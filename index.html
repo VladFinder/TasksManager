@@ -1,0 +1,238 @@
+<html>
+    <head>
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+
+			var taskList = document.createElement('ul');
+			taskList.innerHTML = '<li>Покормить кота</li><li>Помыть посуду</li><li>Постирать белье</li>';
+			document.body.appendChild(taskList);
+			
+			taskList.style.fontFamily = 'sans-serif';
+			taskList.style.fontSize = '20px';
+			taskList.style.color = '#444';
+			
+			taskList.style.textAlign = 'center';
+			taskList.style.listStyleType = 'none';
+			taskList.style.width = '50%';
+			taskList.style.margin = '0 auto';
+			
+			var listItems = document.getElementsByTagName('li');
+			for (var i = 0; i < listItems.length; i++) {
+			  listItems[i].style.backgroundColor = '#EEE';
+			  listItems[i].style.margin = '10px 0';
+			  listItems[i].style.padding = '10px';
+			  listItems[i].style.borderRadius = '5px';
+			}
+			
+			var select = document.createElement('select');
+			select.style.marginRight = '10px';
+			var option = document.createElement('option');
+			option.innerHTML = 'Выберите статус';
+			select.appendChild(option);
+			option = document.createElement('option');
+			option.innerHTML = 'В процессе';
+			select.appendChild(option);
+			option = document.createElement('option');
+			option.innerHTML = 'Выполнено';
+			select.appendChild(option);
+			for (var i = 0; i < listItems.length; i++) {
+			  listItems[i].insertBefore(select.cloneNode(true), listItems[i].firstChild);
+			}
+			
+			var input = document.createElement('input');
+			input.type = 'text';
+			input.placeholder = 'Введите новую задачу';
+			input.style.marginRight = '10px';
+			input.style.padding = '5px';
+			input.style.borderRadius = '5px';
+			var button = document.createElement('button');
+			button.innerHTML = 'Добавить';
+			button.style.padding = '5px';
+			button.style.borderRadius = '5px';
+			button.onclick = function() {
+			  var newTask = document.createElement('li');
+			  newTask.innerHTML = input.value;
+			  newTask.style.backgroundColor = '#EEE';
+			  newTask.style.margin = '10px 0';
+			  newTask.style.padding = '10px';
+			  newTask.style.borderRadius = '5px';
+			  newTask.insertBefore(select.cloneNode(true), newTask.firstChild);
+			  taskList.appendChild(newTask);
+			  input.value = '';
+			};
+			document.body.insertBefore(input, taskList);
+			document.body.insertBefore(button, taskList);
+			
+			button.onclick = function() {
+			  var newTask = document.createElement('li');
+			  newTask.innerHTML = input.value;
+			  newTask.style.backgroundColor = '#EEE';
+			  newTask.style.margin = '10px 0';
+			  newTask.style.padding = '10px';
+			  newTask.style.borderRadius = '5px';
+			  newTask.insertBefore(select.cloneNode(true), newTask.firstChild);
+			  taskList.insertBefore(newTask, taskList.firstChild);
+			  input.value = '';
+			};
+			
+			var removeButton = document.createElement('button');
+			removeButton.innerHTML = 'Удалить выполненые';
+			removeButton.style.padding = '5px';
+			removeButton.style.borderRadius = '5px';
+			removeButton.onclick = function() {
+			  var selects = document.getElementsByTagName('select');
+			  for (var i = 0; i < selects.length; i++) {
+			    if (selects[i].value == 'Выполнено') {
+			      taskList.removeChild(selects[i].parentNode);
+			    }
+			  }
+			};
+			document.body.insertBefore(removeButton, taskList);
+			
+			var controlBlock = document.createElement('div');
+			controlBlock.style.textAlign = 'center';
+			controlBlock.appendChild(input);
+			controlBlock.appendChild(button);
+			controlBlock.appendChild(removeButton);
+			document.body.insertBefore(controlBlock, taskList);
+			
+			for (var i = 0; i < listItems.length; i++) {
+			  listItems[i].insertBefore(listItems[i].lastChild, listItems[i].firstChild);
+			}
+			
+			for (var i = 0; i < listItems.length; i++) {
+			  listItems[i].style.display = 'flex';
+			  listItems[i].style.justifyContent = 'space-between';
+			}
+			
+			button.onclick = function() {
+			  var newTask = document.createElement('li');
+			  newTask.innerHTML = input.value;
+			  newTask.style.backgroundColor = '#EEE';
+			  newTask.style.margin = '10px 0';
+			  newTask.style.padding = '10px';
+			  newTask.style.borderRadius = '5px';
+			  newTask.style.display = 'flex';
+			  newTask.style.justifyContent = 'space-between';
+			  newTask.insertBefore(select.cloneNode(true), newTask.firstChild);
+			  taskList.insertBefore(newTask, taskList.firstChild);
+			  input.value = '';
+			};
+			
+			button.onclick = function() {
+			  var newTask = document.createElement('li');
+			  newTask.innerHTML = input.value;
+			  newTask.style.backgroundColor = '#EEE';
+			  newTask.style.margin = '10px 0';
+			  newTask.style.padding = '10px';
+			  newTask.style.borderRadius = '5px';
+			  newTask.style.display = 'flex';
+			  newTask.style.justifyContent = 'space-between';
+			  newTask.insertBefore(select.cloneNode(true), newTask.firstChild);
+			  taskList.insertBefore(newTask, taskList.firstChild);
+			  input.value = '';
+			  for (var i = 0; i < listItems.length; i++) {
+			    listItems[i].style.display = 'flex';
+			    listItems[i].style.justifyContent = 'space-between';
+			  }
+			  newTask.insertBefore(newTask.lastChild, newTask.firstChild);
+			};
+			
+			removeButton.onclick = function() {
+			  var selects = document.getElementsByTagName('select');
+			  for (var i = 0; i < selects.length; i++) {
+			    if (selects[i].value == 'Выполнено') {
+			      taskList.removeChild(selects[i].parentNode);
+			      i--;
+			    }
+			  }
+			};
+			
+			taskList.style.width = '80%';
+			
+			taskList.style.marginRight = '10%';
+			
+			button.style.marginRight = '10px';
+			
+			button.style.backgroundColor = '#FFF';
+			button.style.border = '1px solid #CCC';
+			button.style.cursor = 'pointer';
+			removeButton.style.backgroundColor = '#FFF';
+			removeButton.style.border = '1px solid #CCC';
+			removeButton.style.cursor = 'pointer';
+			
+			button.onclick = function() {
+			  if (input.value != '') {
+			    var newTask = document.createElement('li');
+			    newTask.innerHTML = input.value;
+			    newTask.style.backgroundColor = '#EEE';
+			    newTask.style.margin = '10px 0';
+			    newTask.style.padding = '10px';
+			    newTask.style.borderRadius = '5px';
+			    newTask.style.display = 'flex';
+			    newTask.style.justifyContent = 'space-between';
+			    newTask.insertBefore(select.cloneNode(true), newTask.firstChild);
+			    taskList.insertBefore(newTask, taskList.firstChild);
+			    input.value = '';
+			    for (var i = 0; i < listItems.length; i++) {
+			      listItems[i].style.display = 'flex';
+			      listItems[i].style.justifyContent = 'space-between';
+			    }
+			    newTask.insertBefore(newTask.lastChild, newTask.firstChild);
+			  }
+			};
+			
+			button.onclick = function() {
+			  if (input.value != '') {
+			    var newTask = document.createElement('li');
+			    newTask.innerHTML = input.value;
+			    newTask.style.backgroundColor = '#EEE';
+			    newTask.style.margin = '10px 0';
+			    newTask.style.padding = '10px';
+			    newTask.style.borderRadius = '5px';
+			    newTask.style.display = 'flex';
+			    newTask.style.justifyContent = 'space-between';
+			    newTask.insertBefore(select.cloneNode(true), newTask.firstChild);
+			    taskList.insertBefore(newTask, taskList.firstChild);
+			    input.value = '';
+			    for (var i = 0; i < listItems.length; i++) {
+			      listItems[i].style.display = 'flex';
+			      listItems[i].style.justifyContent = 'space-between';
+			    }
+			    newTask.insertBefore(newTask.lastChild, newTask.firstChild);
+			  } else {
+			    var popup = document.createElement('div');
+			    popup.innerHTML = 'Задача не заполнена';
+			    popup.style.position = 'fixed';
+			    popup.style.top = '50%';
+			    popup.style.left = '50%';
+			    popup.style.transform = 'translate(-50%, -50%)';
+			    popup.style.backgroundColor = '#EEE';
+			    popup.style.padding = '10px';
+			    popup.style.borderRadius = '5px';
+			    document.body.appendChild(popup);
+			    setTimeout(function() {
+			      document.body.removeChild(popup);
+			    }, 2000);
+			  }
+			};
+			
+			document.body.style.backgroundImage = 'url(https://www.transparenttextures.com/patterns/black-linen.png)';
+			
+			for (var i = 0; i < listItems.length; i++) {
+			  listItems[i].lastChild.onchange = function() {
+			    if (this.value == 'В процессе') {
+			      this.parentNode.style.backgroundColor = '#f4a261';
+			      this.style.backgroundColor = '#f4a261';
+			    } else if (this.value == 'Выполнено') {
+			      this.parentNode.style.backgroundColor = '#2a9d8f';
+			      this.style.backgroundColor = '#2a9d8f';
+			    }
+			  };
+			}
+			});
+        </script>
+    </head>
+    <body style="margin: 0;">
+    </body>
+</html>
